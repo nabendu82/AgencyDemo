@@ -1,0 +1,18 @@
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    font-weight: 400;
+		letter-spacing: 0.075em;
+    margin:0;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+    font-family: "Open Sans", Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+  }

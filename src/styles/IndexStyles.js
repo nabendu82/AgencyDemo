@@ -15,7 +15,7 @@ const GenericH2 = styled.h2`
     color: #ffffff;
     border-bottom: ${props => props.none ? "0" : "2px solid #1d9c91"};
     text-transform: uppercase;
-    letter-spacing: 0.225em;
+    letter-spacing: 0.6rem;
     margin: 0;
 `
 
@@ -142,4 +142,42 @@ const FlexBoxIndex = styled.div`
   }
 `
 
-export { Banner, TextWrapper, MoreText, SectionTwo, SectionThree, FlexBoxIndex, GenereicPara, GenericH2 }
+const SectionFour = styled.section`
+  background-color: #505393;
+  color: #ffffff;
+  text-align: center;
+  .header__section4 {
+    width: 66%;
+    margin: 0 auto;
+  }
+  .title__section4 {
+    font-size: 3rem;
+    padding: 1.35em 0;
+    color: #ffffff;
+    border-bottom: 2px solid #464981;
+    text-transform: uppercase;
+    letter-spacing: 0.225em;
+    margin: 0;
+  }
+  .grid__section4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 66%;
+      margin: 0 auto;
+      padding: 3rem 0;
+  }
+  .grid__section4 > * {
+      padding: 3rem;
+  }
+  .flex__section4{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+  }
+  .flex__section4 > h2{
+      margin-left: 1rem;
+  }
+`
+
+export { Banner, TextWrapper, MoreText, SectionTwo, SectionThree, SectionFour, FlexBoxIndex, GenereicPara, GenericH2 }

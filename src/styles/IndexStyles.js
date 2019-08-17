@@ -23,12 +23,13 @@ const Banner = styled.div`
   &:after {
     content: "";
     display: block;
-    height: 100vh;
+    height: ${props => props.parallax ? '80vh': '100vh'};
     width: 100%;
     background-image: url("banner.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment:${props => props.parallax ? 'fixed': 'scroll'};
     filter: grayscale(100%) blur(2px);
   }
 `
@@ -180,4 +181,49 @@ const SectionFour = styled.section`
   }
 `
 
-export { Banner, TextWrapper, MoreText, SectionTwo, SectionThree, SectionFour, FlexBoxIndex, GenereicPara, GenericH2 }
+const FormFive = styled.div`
+  position: absolute;
+  z-index: 1;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  form > .fields {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+	}
+    input[type="text"],input[type="email"],textarea
+	 {
+        appearance: none;
+        font-size: 2rem;
+		background-color: rgba(144, 144, 144, 0.75);
+		border-radius: 3px;
+        border: none;
+    }
+    input[type="text"], input[type="email"] {
+        height: 2.75em;
+        padding: 0.75em 1em;
+    }
+	textarea {
+        padding: 0.75em 1em;
+    }
+    .button__primary{
+        background-color: #ed4933;
+        box-shadow: none;
+        color: #ffffff;
+        border-radius: 3px;
+        border: 0;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.225em;
+        padding: 1.8rem 0.8rem;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+`;
+
+export { Banner, TextWrapper, MoreText, SectionTwo, SectionThree, SectionFour, FormFive, FlexBoxIndex, GenereicPara, GenericH2 }

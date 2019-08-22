@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { Banner, TextWrapper, MoreText, SectionTwo, SectionThree, SectionFour, FormFive, FlexBoxIndex, GenereicPara, GenericH2 } from "../styles/IndexStyles";
+import Layout from "../components/layout"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faHtml5, faJs, faReact, faCss3, faGalacticSenate } from '@fortawesome/free-brands-svg-icons'
@@ -9,7 +10,7 @@ import { faHeart, faCode, faGem, fas } from '@fortawesome/free-solid-svg-icons';
 library.add(faHeart, faCode, faGem, fab, fas);
 
 export default () => (
-    <>
+    <Layout>
         <section style={{ position: 'relative' }}>
             <Banner></Banner>
             <TextWrapper>
@@ -143,5 +144,5 @@ export default () => (
 					</form>
             </FormFive>
         </section>
-    </>
+    </Layout>
 )

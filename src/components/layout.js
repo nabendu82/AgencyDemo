@@ -1,9 +1,20 @@
 import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faFacebook, faInstagram, faLinkedin, faYoutube, faPinterest } from '@fortawesome/free-brands-svg-icons'
-import { Footer } from '../styles/IndexStyles';
+import { Header, Footer, GenericH2, GenereicPara } from '../styles/IndexStyles';
+import { Link } from "gatsby";
+
 export default ({ children }) => (
     <div>
+        <Header>
+            <GenericH2 none>
+                <Link to="/" style={{color: '#fff'}}>GeekyHacker</Link>
+            </GenericH2>
+            <div className="menu__items">
+                <Link to="/works"><GenereicPara lessSize lessSpacing grey>Works</GenereicPara></Link>
+                <Link to="/about"><GenereicPara lessSize lessSpacing grey>About</GenereicPara></Link>
+            </div>
+        </Header>
         {children}
         <Footer>
             <div class="icons">

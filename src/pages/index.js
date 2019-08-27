@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faHtml5, faJs, faReact, faCss3, faGalacticSenate } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faCode, faGem, fas } from '@fortawesome/free-solid-svg-icons';
+import { navigate } from 'gatsby-link';
 
 library.add(faHeart, faCode, faGem, fab, fas);
 
@@ -22,15 +23,17 @@ class IndexPage extends Component {
     }
 
     handleSubmit = e => {
+        e.preventDefault();
+        const form = e.target
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": "contact", ...this.state })
+          body: encode({ 'form-name': form.getAttribute('name'), ...this.state })
         })
-          .then(() => alert("Success!"))
+          .then(() => navigate(form.getAttribute('action')))
           .catch(error => alert(error));
 
-        e.preventDefault();
+
       };
 
       handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -159,7 +162,11 @@ class IndexPage extends Component {
                 <section style={{ position: 'relative' }}>
                     <Banner parallax></Banner>
                     <FormFive>
-                        <form onSubmit={this.handleSubmit}>
+                        <form name="contact"
+                              method="post"
+                              action="/thanks/"
+                              data-netlify="true"
+                              onSubmit={this.handleSubmit}>
                             <div className="fields">
                                 <GenericH2 none>Contact Us</GenericH2>
                                 <input type="text" name="name" id="name" placeholder="Name" value={name} onChange={this.handleChange} />

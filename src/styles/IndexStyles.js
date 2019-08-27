@@ -16,7 +16,25 @@ const GenericH2 = styled.h2`
   border-bottom: ${props => (props.none ? "0" : "2px solid #1d9c91")};
   text-transform: uppercase;
   letter-spacing: 0.6rem;
+  margin: ${props => (props.some ? "5rem 0 0 0" : "0")};
+`
+
+const GenericH3 = styled.h3`
+  font-size: 3rem;
+  padding: ${props => (props.none ? "0" : "1.35em 0")};
+  color: ${props => (props.dark ? "#4E4852" : "#ffffff")};
+  border-bottom: ${props => (props.none ? "0" : "2px solid #1d9c91")};
+  text-transform: uppercase;
+  letter-spacing: 0.6rem;
   margin: 0;
+`
+const GenereicParaAbout = styled.p`
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: ${props => (props.lessSpacing ? "0.075em" : "0.225em")};
+  font-size: ${props => (props.lessSize ? "1.5rem" : "2.5rem")};
+  line-height: ${props => (props.lessSize ? "2rem" : "3rem")};
+  color: ${props => (props.grey ? "#4E4852" : "#ffffff")};
 `
 
 const Banner = styled.div`
@@ -25,7 +43,7 @@ const Banner = styled.div`
     display: block;
     height: ${props => (props.parallax ? "80vh" : "100vh")};
     width: 100%;
-    background-image: url("banner.jpg");
+    background-image: ${props => (props.different ? "url('developer.jpg')" : "url('banner.jpg')")};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -101,7 +119,7 @@ const MoreText = styled.div`
 `
 
 const SectionTwo = styled.section`
-  background-color: #21b2a6;
+  background-color: ${props => (props.white ? "#ffffff" : "#21b2a6")};
   text-align: center;
   padding: 10rem 0;
   div {
@@ -256,6 +274,10 @@ const Header = styled.header`
   background-color: #1d242a;
   color: #ffffff;
   padding: 3rem 0;
+  z-index: 1000;
+  position: fixed;
+  top:0;
+  left:0;
   .menu__items {
     display: flex;
   }
@@ -290,4 +312,6 @@ export {
   FlexBoxIndex,
   GenereicPara,
   GenericH2,
+  GenericH3,
+  GenereicParaAbout
 }

@@ -25,7 +25,7 @@ const projects = [
 export default () => (
     <Layout>
         <Works>
-            <GenericH2 none dark style={{textAlign: 'center'}}>Our Works</GenericH2>
+            <GenericH2 none dark some style={{textAlign: 'center'}}>Our Works</GenericH2>
             <section class="gallery__flex">
              { projects && projects.map(proj => <Project key={proj.title} project={proj} />)}
             </section>

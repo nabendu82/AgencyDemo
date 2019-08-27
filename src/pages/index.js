@@ -6,54 +6,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faHtml5, faJs, faReact, faCss3, faGalacticSenate } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faCode, faGem, fas } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios"
-import * as qs from "query-string"
 
 library.add(faHeart, faCode, faGem, fab, fas);
+
+const encode = (data) => {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+}
 
 class IndexPage extends Component {
     constructor(props) {
         super(props)
-        this.domRef = React.createRef()
-        this.state = { feedbackMsg: null }
+        this.state = { name: "", email: "", message: "" };
     }
 
-    handleSubmit(event) {
-        // Do not submit form via HTTP, since we're doing that via XHR request.
-        event.preventDefault()
-        // Loop through this component's refs (the fields) and add them to the
-        // formData object. What we're left with is an object of key-value pairs
-        // that represent the form data we want to send to Netlify.
-        const formData = {}
-        Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
-
-        // Set options for axios. The URL we're submitting to
-        // (this.props.location.pathname) is the current page.
-        const axiosOptions = {
-          url: this.props.location.pathname,
-          method: "post",
+    handleSubmit = e => {
+        fetch("/", {
+          method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          data: qs.stringify(formData),
-        }
+          body: encode({ "form-name": "contact", ...this.state })
+        })
+          .then(() => alert("Success!"))
+          .catch(error => alert(error));
 
-        // Submit to Netlify. Upon success, set the feedback message and clear all
-        // the fields within the form. Upon failure, keep the fields as they are,
-        // but set the feedback message to show the error state.
-        axios(axiosOptions)
-          .then(response => {
-            this.setState({
-              feedbackMsg: "Form submitted successfully!",
-            })
-            this.domRef.current.reset()
-          })
-          .catch(err =>
-            this.setState({
-              feedbackMsg: "Form could not be submitted.",
-            })
-          )
-      }
+        e.preventDefault();
+      };
+
+      handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
       render() {
+        const { name, email, message } = this.state;
           return (
             <Layout>
                 <section style={{ position: 'relative' }}>
@@ -176,13 +159,12 @@ class IndexPage extends Component {
                 <section style={{ position: 'relative' }}>
                     <Banner parallax></Banner>
                     <FormFive>
-                        {this.state.feedbackMsg && <p>{this.state.feedbackMsg}</p>}
-                        <form ref={this.domRef} name="agency_contact_us" method="POST" data-netlify="true" onSubmit={event => this.handleSubmit(event)}>
+                        <form onSubmit={this.handleSubmit}>
                             <div className="fields">
                                 <GenericH2 none>Contact Us</GenericH2>
-                                <input ref="name" type="text" name="name" id="name" placeholder="Name" />
-                                <input ref="email" type="email" name="email" id="email" placeholder="Email" />
-                                <textarea ref="message" name="message" id="message" placeholder="Message" rows="7"></textarea>
+                                <input type="text" name="name" id="name" placeholder="Name" value={name} onChange={this.handleChange} />
+                                <input type="email" name="email" id="email" placeholder="Email" value={email} onChange={this.handleChange} />
+                                <textarea name="message" id="message" placeholder="Message" rows="7" value={message} onChange={this.handleChange}></textarea>
                                 <div className="actions">
                                     <input type="submit" value="Send Message" className="button__primary" />
                                 </div>

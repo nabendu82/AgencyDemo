@@ -131,7 +131,7 @@ export default () => (
         <section style={{ position: 'relative' }}>
             <Banner parallax></Banner>
             <FormFive>
-					<form name="contact_us" method="POST" data-netlify="true">
+					<form name="agency_contact_us" method="POST" data-netlify="true" action="/thank-you">
 						<div className="fields">
 					        <GenericH2 none>Contact Us</GenericH2>
 							<input type="text" name="name" id="name" placeholder="Name" />
